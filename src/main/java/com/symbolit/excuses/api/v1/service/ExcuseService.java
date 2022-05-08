@@ -1,6 +1,7 @@
 package com.symbolit.excuses.api.v1.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +28,9 @@ public class ExcuseService {
 			.map(e -> new Excuse(e.getHttpCode(), e.getTag(), e.getMessage()))
 			.collect(Collectors.toList())
 		);
+	}
+	
+	public  Optional<Excuse> findByHttpCode(int httpCode) {
+		return excuseRepository.findByHttpCode(httpCode);
 	}
 }
